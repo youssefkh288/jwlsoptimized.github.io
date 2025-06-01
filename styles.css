@@ -27,9 +27,16 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text);
-    background: var(--bg);
+    background: linear-gradient(135deg, 
+        rgba(160, 140, 175, 0.95) 0%,
+        rgba(212, 193, 230, 0.85) 25%,
+        rgba(107, 92, 117, 0.95) 50%,
+        rgba(212, 193, 230, 0.85) 75%,
+        rgba(160, 140, 175, 0.95) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
     background-attachment: fixed;
-    animation: bgMove 18s ease-in-out infinite alternate;
     overflow-x: hidden;
 }
 
@@ -773,6 +780,7 @@ body {
     text-shadow: 0 2px 8px #a08caf44;
 }
 
+
 .social-links {
     display: flex;
     gap: 1.2rem;
@@ -1164,18 +1172,13 @@ h1, h2, h3 {
 
 /* Cart Page Styles */
 .cart {
+    min-height: 100vh; /* Make sure it fills the viewport */
+    display: flex;
+    align-items: center;   /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
     padding: 8rem 5%;
-    background: linear-gradient(135deg, 
-        rgba(160, 140, 175, 0.95) 0%,
-        rgba(212, 193, 230, 0.85) 25%,
-        rgba(107, 92, 117, 0.95) 50%,
-        rgba(212, 193, 230, 0.85) 75%,
-        rgba(160, 140, 175, 0.95) 100%
-    );
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
+    background: none;
 }
-
 .cart-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -1183,6 +1186,9 @@ h1, h2, h3 {
     margin-top: 2rem;
     position: relative;
     z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    
 }
 
 .cart-items {
@@ -1345,4 +1351,5 @@ main > section, .checkout-content, .cart-items, .cart-summary, .order-summary {
 
 main > section:last-of-type {
     margin-bottom: 0;
-} 
+}
+

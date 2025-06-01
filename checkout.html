@@ -6,31 +6,35 @@
     <title>Checkout - JWLS by Nada</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <nav class="main-nav">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="images/logo.jpeg" alt="JWLS by Nada">
-            </a>
-            <div class="nav-menu">
-                <a href="index.html#home" class="nav-link">Home</a>
-                <a href="index.html#collection" class="nav-link">Collection</a>
-                <a href="index.html#about" class="nav-link">About</a>
-                <a href="index.html#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-social">
+            <div class="nav-social-left">
                 <a href="https://www.instagram.com/youssefkh28__/" target="_blank" class="social-icon">
                     <i class="fab fa-instagram"></i>
                 </a>
                 <a href="https://wa.me/201147142218" target="_blank" class="social-icon">
                     <i class="fab fa-whatsapp"></i>
                 </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#collection" class="nav-link">Collection</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-social-right">
                 <a href="cart.html" class="social-icon">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
             </div>
+            <button class="menu-btn">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -52,6 +56,10 @@
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
                         <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Delivery Address</label>
@@ -108,16 +116,16 @@
             e.preventDefault();
             
             const templateParams = {
-  user_name: this.elements['name'].value,
-  user_phone: this.elements['phone'].value,
-  user_address: this.elements['address'].value,
-  order_notes: this.elements['notes'].value,
-  cart_items: cart.map(item => 
-      `${item.name} - $${item.price.toFixed(2)}`
-  ).join('\n'),
-  cart_total: `$${total.toFixed(2)}`
-};
-
+                user_name: this.elements['name'].value,
+                user_phone: this.elements['phone'].value,
+                user_city: this.elements['city'].value,
+                user_address: this.elements['address'].value,
+                order_notes: this.elements['notes'].value,
+                cart_items: cart.map(item => 
+                    `${item.name} - $${item.price.toFixed(2)}`
+                ).join('\n'),
+                cart_total: `$${total.toFixed(2)}`
+            };
 
             console.log("templateParams:", templateParams);
 
