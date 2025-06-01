@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - JWLS by Nada</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.jpeg" alt="JWLS by Nada">
+            </a>
+            <div class="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#collection" class="nav-link">Collection</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-social">
+                <a href="https://www.instagram.com/youssefkh28__/" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/201147142218" target="_blank" class="social-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="cart.html" class="social-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="checkout">
+            <h1>Complete Your Order</h1>
+            <div class="checkout-content">
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="cart-summary">
+                        <!-- Cart items will be displayed here -->
+                    </div>
+                </div>
+                <form id="order-form" class="checkout-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Delivery Address</label>
+                        <textarea id="address" name="address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes"></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Place Order
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init("JUftUD87X6trVxCg3");
+        })();
+
+        // Get cart items from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartSummary = document.getElementById('cart-summary');
+        let total = 0;
+
+        // Display cart items in summary
+        cart.forEach(item => {
+            total += item.price;
+            const itemElement = document.createElement('div');
+            itemElement.className = 'summary-cart-item';
+            itemElement.innerHTML = `
+                <span>${item.name}</span>
+                <span>$${item.price.toFixed(2)}</span>
+            `;
+            cartSummary.appendChild(itemElement);
+        });
+
+        // Add total to summary
+        const totalElement = document.createElement('div');
+        totalElement.className = 'summary-total';
+        totalElement.innerHTML = `
+            <span>Total</span>
+            <span>$${total.toFixed(2)}</span>
+        `;
+        cartSummary.appendChild(totalElement);
+
+        // Handle form submission
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const templateParams = {
+  user_name: this.elements['name'].value,
+  user_phone: this.elements['phone'].value,
+  user_address: this.elements['address'].value,
+  order_notes: this.elements['notes'].value,
+  cart_items: cart.map(item => 
+      `${item.name} - $${item.price.toFixed(2)}`
+  ).join('\n'),
+  cart_total: `$${total.toFixed(2)}`
+};
+
+
+            console.log("templateParams:", templateParams);
+
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitButton.disabled = true;
+
+            emailjs.send("service_6j3dp9y", "template_ns1xwm5", templateParams)
+                .then(function() {
+                    alert("Order placed successfully! We'll contact you shortly.");
+                    // Clear cart
+                    localStorage.removeItem('cart');
+                    // Redirect to home page
+                    window.location.href = "index.html";
+                }, function(error) {
+                    console.error("EmailJS error:", error);
+                    alert("Error: " + error.text);
+                    // Reset button
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html> 

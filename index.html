@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWLS by Nada | Luxury Accessories</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-content">
+            <img src="images/logo.jpeg" alt="JWLS by Nada Logo" class="loader-logo">
+            <div class="loader-brand">JWLS By Nada</div>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-social-left">
+                <a href="https://www.instagram.com/youssefkh28__/" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/201147142218" target="_blank" class="social-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#collection" class="nav-link">Collection</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-social-right">
+                <a href="cart.html" class="social-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+            <button class="menu-btn">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1 class="reveal">JWLS by Nada</h1>
+                <p class="reveal">Crafting Elegance, Defining Style</p>
+                <a href="#collection" class="cta-btn reveal">
+                    Explore Collection
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-bg"></div>
+            <div class="about-container">
+                <div class="about-content reveal active">
+                    <h2>About JWLS by Nada</h2>
+                    <p>Welcome to JWLS by Nada, where each piece tells a story of elegance and sophistication. We curate exquisite accessories that blend timeless beauty with contemporary design, perfect for the modern woman who appreciates fine craftsmanship.</p>
+                    <p>Our collection features handpicked necklaces and bracelets that are more than just accessories – they're expressions of your unique style and personality.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="collection" class="collection">
+            <div class="section-header">
+                <h2 class="reveal">Our Collection</h2>
+                <p class="reveal">Timeless pieces for the modern woman</p>
+            </div>
+            <div class="products-grid">
+                <article class="product-card reveal">
+                    <div class="product-image">
+                        <img src="images/necklace1.jpeg" alt="Necklace 1" class="product-img">
+                        <div class="product-overlay">
+                            <button class="add-to-cart-btn" data-product='{"name": "Pearl Elegance", "price": 89.99, "image": "images/necklace1.jpeg"}'>
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3>Pearl Elegance</h3>
+                        <p class="price">$89.99</p>
+                        <p class="description">A masterpiece of refined beauty and contemporary design.</p>
+                    </div>
+                </article>
+
+                <article class="product-card reveal">
+                    <div class="product-image">
+                        <img src="images/necklace2.jpeg" alt="Necklace 2" class="product-img">
+                        <div class="product-overlay">
+                            <button class="add-to-cart-btn" data-product='{"name": "Statement Piece", "price": 129.99, "image": "images/necklace2.jpeg"}'>
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3>Statement Piece</h3>
+                        <p class="price">$129.99</p>
+                        <p class="description">Bold design meets sophisticated elegance.</p>
+                    </div>
+                </article>
+
+                <article class="product-card reveal">
+                    <div class="product-image">
+                        <img src="images/necklace3.jpeg" alt="Necklace 3" class="product-img">
+                        <div class="product-overlay">
+                            <button class="add-to-cart-btn" data-product='{"name": "Golden Grace", "price": 109.99, "image": "images/necklace3.jpeg"}'>
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3>Golden Grace</h3>
+                        <p class="price">$109.99</p>
+                        <p class="description">Radiant gold tones for timeless sophistication.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-bg"></div>
+            <div class="contact-container">
+                <h2 class="reveal">Connect With Us</h2>
+                <p class="reveal">Ready to find your perfect piece? We're here to help.</p>
+                <a href="https://wa.me/201147142218" class="contact-btn reveal">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="images/logo.jpeg" alt="JWLS by Nada Logo" class="footer-logo">
+                <p>Elegant accessories for the modern woman</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <a href="#home">Home</a>
+                    <a href="#collection">Collection</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/youssefkh28__/" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/201147142218" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 JWLS by Nada. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
