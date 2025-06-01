@@ -49,7 +49,7 @@
                         <h2>Order Summary</h2>
                         <div class="summary-item">
                             <span>Subtotal</span>
-                            <span id="subtotal">$0.00</span>
+                            <span id="subtotal">0.00 EGP</span>
                         </div>
                         <div class="summary-item">
                             <span>Shipping</span>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="summary-item total">
                             <span>Total</span>
-                            <span id="total">$0.00</span>
+                            <span id="total">0.00 EGP</span>
                         </div>
                         <a href="checkout.html" class="cta-btn" id="checkout-btn" style="width: 100%;">
                             <i class="fas fa-lock"></i>
@@ -103,7 +103,7 @@
                         <img src="${item.image}" alt="${item.name}">
                         <div class="cart-item-details">
                             <h3>${item.name}</h3>
-                            <p class="price">$${item.price.toFixed(2)}</p>
+                            <p class="price">${item.price.toFixed(2)} EGP</p>
                         </div>
                         <button class="remove-item" data-index="${index}">
                             <i class="fas fa-trash"></i>
@@ -112,8 +112,8 @@
                 `;
             }).join('');
 
-            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-            totalElement.textContent = `$${subtotal.toFixed(2)}`;
+            subtotalElement.textContent = `${subtotal.toFixed(2)} EGP`;
+            totalElement.textContent = `${subtotal.toFixed(2)} EGP`;
             checkoutBtn.style.display = 'block';
         }
 

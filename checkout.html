@@ -96,8 +96,8 @@
             const itemElement = document.createElement('div');
             itemElement.className = 'summary-cart-item';
             itemElement.innerHTML = `
-                <span>${item.name}</span>
-                <span>$${item.price.toFixed(2)}</span>
+                <span>${item.name} EGP</span>
+                <span>${item.price.toFixed(2)} EGP</span>
             `;
             cartSummary.appendChild(itemElement);
         });
@@ -122,9 +122,9 @@
                 user_address: this.elements['address'].value,
                 order_notes: this.elements['notes'].value,
                 cart_items: cart.map(item => 
-                    `${item.name} - $${item.price.toFixed(2)}`
+                    `${item.name} - ${item.price.toFixed(2)} EGP`
                 ).join('\n'),
-                cart_total: `$${total.toFixed(2)}`
+                cart_total: `${total.toFixed(2)} EGP`
             };
 
             console.log("templateParams:", templateParams);
