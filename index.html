@@ -2,19 +2,280 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>JWLS by Nada | Luxury Accessories</title>
     
+    <!-- Mobile Optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="JWLS by Nada">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
     <!-- Resource Hints -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload Critical Resources -->
     <link rel="preload" href="styles.min.css" as="style">
     <link rel="preload" href="script.min.js" as="script">
-    <link rel="preload" href="images/optimized/logo.webp" as="image">
-    <link rel="preload" href="images/optimized/model.webp" as="image">
+    <link rel="preload" href="images/optimized/logo.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="images/optimized/model.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" as="style">
+    
+    <!-- Critical CSS -->
+    <style>
+        :root {
+            --safe-area-inset-top: env(safe-area-inset-top, 0px);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .loader { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: #fff; 
+            z-index: 9999; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            padding-top: var(--safe-area-inset-top);
+            padding-bottom: var(--safe-area-inset-bottom);
+        }
+        
+        .loader-content { 
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loader-logo { 
+            max-width: 150px; 
+            height: auto;
+            width: 100%;
+        }
+        
+        .loader-brand { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(20px, 5vw, 24px);
+            margin-top: 20px;
+        }
+        
+        .main-nav { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding-top: var(--safe-area-inset-top);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-menu {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+                gap: 2rem;
+            }
+            
+            .menu-btn {
+                display: none;
+            }
+        }
+        
+        .menu-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #000;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            padding: calc(60px + var(--safe-area-inset-top)) 20px 20px;
+        }
+        
+        .hero-content { 
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-btn { 
+            display: inline-block; 
+            padding: 12px 24px; 
+            background: #000; 
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 4px;
+            font-size: clamp(16px, 4vw, 18px);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .cta-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:active {
+            transform: scale(0.98);
+        }
+        
+        .product-image {
+            position: relative;
+            padding-top: 100%;
+        }
+        
+        .product-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .add-to-cart-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+        
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+        
+        @media (max-width: 767px) {
+            .product-overlay {
+                opacity: 1;
+                background: rgba(0,0,0,0.3);
+            }
+            
+            .add-to-cart-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+                color: #fff;
+            }
+            
+            .main-nav {
+                background: rgba(0,0,0,0.95);
+            }
+            
+            .cta-btn {
+                background: #fff;
+                color: #000;
+            }
+            
+            .product-card {
+                background: #111;
+            }
+            
+            .add-to-cart-btn {
+                background: #fff;
+                color: #000;
+            }
+        }
+    </style>
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.min.css">
@@ -23,12 +284,14 @@
     
     <!-- Meta Tags for SEO -->
     <meta name="description" content="JWLS by Nada - Luxury accessories and jewelry for the modern woman. Discover our collection of elegant necklaces and bracelets.">
-    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
 </head>
 <body>
     <div class="loader">
         <div class="loader-content">
-            <img src="images/optimized/logo.webp" alt="JWLS by Nada Logo" class="loader-logo" width="600" height="600" loading="eager">
+            <img src="images/optimized/logo.webp" alt="JWLS by Nada Logo" class="loader-logo" width="150" height="150" fetchpriority="high" decoding="async">
             <div class="loader-brand">JWLS By Nada</div>
         </div>
     </div>
@@ -36,11 +299,11 @@
     <nav class="main-nav">
         <div class="nav-container">
             <div class="nav-social-left">
-                <a href="https://www.instagram.com/youssefkh28__/" target="_blank" class="social-icon">
-                    <i class="fab fa-instagram"></i>
+                <a href="https://www.instagram.com/youssefkh28__/" target="_blank" rel="noopener" class="social-icon">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
-                <a href="https://wa.me/201147142218" target="_blank" class="social-icon">
-                    <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/201147142218" target="_blank" rel="noopener" class="social-icon">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="nav-menu">
@@ -51,10 +314,10 @@
             </div>
             <div class="nav-social-right">
                 <a href="cart.html" class="social-icon">
-                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                 </a>
             </div>
-            <button class="menu-btn">
+            <button class="menu-btn" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
             </button>
@@ -69,7 +332,7 @@
                 <p class="reveal">Crafting Elegance, Defining Style</p>
                 <a href="#collection" class="cta-btn reveal">
                     Explore Collection
-                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
         </section>
@@ -99,12 +362,13 @@
                              width="400"
                              height="400"
                              loading="lazy"
+                             decoding="async"
                              srcset="images/optimized/necklace1-small.webp 300w,
                                      images/optimized/necklace1.webp 600w"
                              sizes="(max-width: 768px) 300px, 600px">
                         <div class="product-overlay">
                             <button class="add-to-cart-btn" data-product='{"name": "Pearl Elegance", "price": 89.99, "image": "images/optimized/necklace1.webp"}'>
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                                 Add to Cart
                             </button>
                         </div>
@@ -124,12 +388,13 @@
                              width="400"
                              height="400"
                              loading="lazy"
+                             decoding="async"
                              srcset="images/optimized/necklace2-small.webp 300w,
                                      images/optimized/necklace2.webp 600w"
                              sizes="(max-width: 768px) 300px, 600px">
                         <div class="product-overlay">
                             <button class="add-to-cart-btn" data-product='{"name": "Statement Piece", "price": 129.99, "image": "images/optimized/necklace2.webp"}'>
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                                 Add to Cart
                             </button>
                         </div>
@@ -149,12 +414,13 @@
                              width="400"
                              height="400"
                              loading="lazy"
+                             decoding="async"
                              srcset="images/optimized/necklace3-small.webp 300w,
                                      images/optimized/necklace3.webp 600w"
                              sizes="(max-width: 768px) 300px, 600px">
                         <div class="product-overlay">
                             <button class="add-to-cart-btn" data-product='{"name": "Golden Grace", "price": 109.99, "image": "images/optimized/necklace3.webp"}'>
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                                 Add to Cart
                             </button>
                         </div>
@@ -173,8 +439,8 @@
             <div class="contact-container">
                 <h2 class="reveal">Connect With Us</h2>
                 <p class="reveal">Ready to find your perfect piece? We're here to help.</p>
-                <a href="https://wa.me/201147142218" class="contact-btn reveal">
-                    <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/201147142218" class="contact-btn reveal" rel="noopener">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     Chat on WhatsApp
                 </a>
             </div>
@@ -189,7 +455,8 @@
                          alt="JWLS by Nada Logo" 
                          width="40" 
                          height="40" 
-                         loading="lazy">
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <p>Elegant accessories for the modern woman</p>
             </div>
@@ -202,11 +469,11 @@
                 </div>
                 <div class="footer-section">
                     <div class="social-links">
-                        <a href="https://www.instagram.com/youssefkh28__/" target="_blank">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/youssefkh28__/" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://wa.me/201147142218" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/201147142218" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -217,6 +484,81 @@
         </div>
     </footer>
 
+    <!-- Deferred Script Loading -->
     <script src="script.min.js" defer></script>
+    
+    <!-- Performance Monitoring -->
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            // Report Web Vitals
+            if (window.webVitals) {
+                webVitals.getCLS(console.log);
+                webVitals.getFID(console.log);
+                webVitals.getLCP(console.log);
+            }
+            
+            // Smooth loader transition
+            setTimeout(function() {
+                const loader = document.querySelector('.loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+                }
+            }, 1000);
+        });
+
+        // Mobile menu handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (menuBtn && navMenu) {
+                menuBtn.addEventListener('click', function() {
+                    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                    menuBtn.classList.toggle('active');
+                });
+                
+                // Close menu on window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth >= 768) {
+                        navMenu.style.display = 'flex';
+                    } else {
+                        navMenu.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        // Touch event handling
+        document.addEventListener('touchstart', function() {}, {passive: true});
+
+        // Intersection Observer for lazy loading
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        }
+
+        // Handle safe areas for modern mobile browsers
+        function updateSafeAreaInsets() {
+            document.documentElement.style.setProperty('--safe-area-inset-top', 'env(safe-area-inset-top, 0px)');
+            document.documentElement.style.setProperty('--safe-area-inset-bottom', 'env(safe-area-inset-bottom, 0px)');
+        }
+        
+        window.addEventListener('resize', updateSafeAreaInsets);
+        updateSafeAreaInsets();
+    </script>
 </body>
 </html> 
