@@ -69,6 +69,7 @@
             align-items: center;
             padding-top: var(--safe-area-inset-top);
             padding-bottom: var(--safe-area-inset-bottom);
+            will-change: opacity, transform;
         }
         
         .loader-content { 
@@ -98,6 +99,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding-top: var(--safe-area-inset-top);
+            will-change: transform, backdrop-filter;
         }
         
         .nav-container {
@@ -130,6 +132,7 @@
             padding: 0.5rem;
             cursor: pointer;
             z-index: 1001;
+            will-change: transform, opacity;
         }
         
         .menu-btn span {
@@ -147,12 +150,14 @@
             align-items: center; 
             justify-content: center;
             padding: calc(60px + var(--safe-area-inset-top)) 20px 20px;
+            will-change: transform, opacity;
         }
         
         .hero-content { 
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
+            will-change: transform, opacity;
         }
         
         .cta-btn { 
@@ -164,6 +169,7 @@
             border-radius: 4px;
             font-size: clamp(16px, 4vw, 18px);
             transition: transform 0.2s, background-color 0.2s;
+            will-change: transform, background-color;
         }
         
         .cta-btn:active {
@@ -185,6 +191,7 @@
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+             will-change: transform;
         }
         
         .product-card:active {
@@ -217,6 +224,7 @@
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s;
+             will-change: opacity;
         }
         
         .product-card:hover .product-overlay {
@@ -232,6 +240,7 @@
             cursor: pointer;
             font-size: 16px;
             transition: transform 0.2s;
+            will-change: transform;
         }
         
         .add-to-cart-btn:active {
@@ -287,6 +296,9 @@
     
     <!-- Cache Control -->
     <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+
+    <!-- Note: Further optimization needed for actual image file sizes and unused CSS in styles.min.css -->
+    <!-- Note: Server-side configuration is needed for proper cache policies on all static assets -->
 </head>
 <body>
     <div class="loader">
@@ -539,6 +551,13 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
+                        // Use data-srcset and data-sizes for responsive images with lazy loading
+                        if (img.dataset.srcset) {
+                            img.srcset = img.dataset.srcset;
+                        }
+                        if (img.dataset.sizes) {
+                            img.sizes = img.dataset.sizes;
+                        }
                         img.src = img.dataset.src;
                         observer.unobserve(img);
                     }
