@@ -4,14 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JWLS by Nada | Luxury Accessories</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="preload" href="script.min.js" as="script">
+    <link rel="preload" href="images/optimized/logo.webp" as="image">
+    <link rel="preload" href="images/optimized/model.webp" as="image">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="JWLS by Nada - Luxury accessories and jewelry for the modern woman. Discover our collection of elegant necklaces and bracelets.">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
     <div class="loader">
         <div class="loader-content">
-            <img src="images/logo.jpeg" alt="JWLS by Nada Logo" class="loader-logo">
+            <img src="images/optimized/logo.webp" alt="JWLS by Nada Logo" class="loader-logo" width="600" height="600" loading="eager">
             <div class="loader-brand">JWLS By Nada</div>
         </div>
     </div>
@@ -76,9 +93,17 @@
             <div class="products-grid">
                 <article class="product-card reveal">
                     <div class="product-image">
-                        <img src="images/necklace1.jpeg" alt="Necklace 1" class="product-img">
+                        <img src="images/optimized/necklace1.webp" 
+                             alt="Pearl Elegance Necklace" 
+                             class="product-img"
+                             width="400"
+                             height="400"
+                             loading="lazy"
+                             srcset="images/optimized/necklace1-small.webp 300w,
+                                     images/optimized/necklace1.webp 600w"
+                             sizes="(max-width: 768px) 300px, 600px">
                         <div class="product-overlay">
-                            <button class="add-to-cart-btn" data-product='{"name": "Pearl Elegance", "price": 89.99, "image": "images/necklace1.jpeg"}'>
+                            <button class="add-to-cart-btn" data-product='{"name": "Pearl Elegance", "price": 89.99, "image": "images/optimized/necklace1.webp"}'>
                                 <i class="fas fa-shopping-cart"></i>
                                 Add to Cart
                             </button>
@@ -93,9 +118,17 @@
 
                 <article class="product-card reveal">
                     <div class="product-image">
-                        <img src="images/necklace2.jpeg" alt="Necklace 2" class="product-img">
+                        <img src="images/optimized/necklace2.webp" 
+                             alt="Statement Piece Necklace" 
+                             class="product-img"
+                             width="400"
+                             height="400"
+                             loading="lazy"
+                             srcset="images/optimized/necklace2-small.webp 300w,
+                                     images/optimized/necklace2.webp 600w"
+                             sizes="(max-width: 768px) 300px, 600px">
                         <div class="product-overlay">
-                            <button class="add-to-cart-btn" data-product='{"name": "Statement Piece", "price": 129.99, "image": "images/necklace2.jpeg"}'>
+                            <button class="add-to-cart-btn" data-product='{"name": "Statement Piece", "price": 129.99, "image": "images/optimized/necklace2.webp"}'>
                                 <i class="fas fa-shopping-cart"></i>
                                 Add to Cart
                             </button>
@@ -110,9 +143,17 @@
 
                 <article class="product-card reveal">
                     <div class="product-image">
-                        <img src="images/necklace3.jpeg" alt="Necklace 3" class="product-img">
+                        <img src="images/optimized/necklace3.webp" 
+                             alt="Golden Grace Necklace" 
+                             class="product-img"
+                             width="400"
+                             height="400"
+                             loading="lazy"
+                             srcset="images/optimized/necklace3-small.webp 300w,
+                                     images/optimized/necklace3.webp 600w"
+                             sizes="(max-width: 768px) 300px, 600px">
                         <div class="product-overlay">
-                            <button class="add-to-cart-btn" data-product='{"name": "Golden Grace", "price": 109.99, "image": "images/necklace3.jpeg"}'>
+                            <button class="add-to-cart-btn" data-product='{"name": "Golden Grace", "price": 109.99, "image": "images/optimized/necklace3.webp"}'>
                                 <i class="fas fa-shopping-cart"></i>
                                 Add to Cart
                             </button>
@@ -144,7 +185,11 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <div class="footer-logo-modern">
-                    <img src="images/logo.jpeg" alt="JWLS by Nada Logo">
+                    <img src="images/optimized/logo.webp" 
+                         alt="JWLS by Nada Logo" 
+                         width="40" 
+                         height="40" 
+                         loading="lazy">
                 </div>
                 <p>Elegant accessories for the modern woman</p>
             </div>
@@ -172,6 +217,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.min.js" defer></script>
 </body>
 </html> 
